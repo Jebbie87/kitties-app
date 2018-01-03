@@ -1,21 +1,11 @@
-import { Author, View, FortuneCookie } from './connectors'
-import Query from './resolvers/query'
+import Query from './resolvers/Query'
+import Cat from './resolvers/Cat'
+import Characteristic from './resolvers/Characteristic'
 
 const resolvers = {
-  Query: Query,
-  Author: {
-    posts(author) {
-      return author.getPosts()
-    }
-  },
-  Post: {
-    author(post) {
-      return post.getAuthor()
-    },
-    views(post) {
-      return View.findOne({ postId: post.id }).then(view => view.views)
-    }
-  }
+  Query,
+  Cat,
+  Characteristic
 }
 
 export default resolvers

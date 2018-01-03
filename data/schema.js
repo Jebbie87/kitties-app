@@ -1,37 +1,84 @@
-import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools'
-import mocks from './mocks'
+import { makeExecutableSchema } from 'graphql-tools'
 import resolvers from './resolvers'
 
 const typeDefs = `
 type Query {
-  author(firstName: String, lastName: String): Author
-  allAuthors: [Author]
-  getFortuneCookie: String
+ cat(id: Int, name: String): Cat
+ allCats: [Cat]
 }
 
-type Author {
+type Cat {
   id: Int
-  firstName: String
-  lastName: String
-  posts: [Post]
+  name: String
+  ownerID: Int
+  momID: Int
+  dadID: Int
+  siblings: [Siblings]
+  characteristic: Characteristic
+  personality: Int
+  rarity: Int
 }
 
-type Post {
+type Characteristic {
   id: Int
-  title: String
-  text: String
-  views: Int
-  author: Author
+  ear: Ear
+  eye: Eye
+  nose: Nose
+  mouth: Mouth
+  whisker: Whisker
+  body: Body
+  fur: Fur
+  tail: Tail
+  cat: Cat
 }
 
-type FortuneCookie {
+type Siblings {
   id: Int
-  fortune: String
+  siblingCatID: Int
+  cat: Cat
+}
+
+type Ear {
+  id: Int
+  name: String
+}
+
+type Eye {
+  id: Int
+  name: String
+}
+
+type Nose {
+  id: Int
+  name: String
+}
+
+type Mouth {
+  id: Int
+  name: String
+}
+
+type Whisker {
+  id: Int
+  name: String
+}
+
+type Body {
+  id: Int
+  name: String
+}
+
+type Fur {
+  id: Int
+  name: String
+}
+
+type Tail {
+  id: Int
+  name: String
 }
 `
 
 const schema = makeExecutableSchema({ typeDefs, resolvers })
-
-// addMockFunctionsToSchema({ schema, mocks })
 
 export default schema
